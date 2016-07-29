@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>cal</title>
+</head>
+<body>
+<h1 id="nsDate"></h1>
+
+<script>
+	
+		var startYear = 1469;
+		var one_day=1000*60*60*24;
+		var daysPerMonth= [30, 31, 31, 32, 31, 31, 30, 30, 30, 30, 29, 30];
+		var monthNames= ['Chet', 'Vaisakh', 'Jeth', 'Harh', 'Sawan', 'Bhadon',
+				'Assu', 'Katak', 'Maghar', 'Poh', 'Magh', 'Phagun'];
+		var date = new Date();
+		var nYear = date.getFullYear();
+		var startDate = new Date(date.getFullYear(),2,14);
+		if(startDate > date) {
+			startDate = new Date(date.getFullYear()-1,2,14);
+			nYear = date.getFullYear()-1;
+		}
+		var days = Math.ceil((date.getTime()-startDate.getTime())/(one_day));
+		var monthCount = 0;
+
+		while(days > daysPerMonth[monthCount]) 
+		{
+			days = days-daysPerMonth[monthCount];
+			monthCount++;
+		}		
+		console.log(days+" "+monthNames[monthCount]+" "+(nYear-startYear+1));
+		document.getElementById('nsDate').innerHTML = days+" "+monthNames[monthCount]+" "+(nYear-startYear+1);
+	
+</script>
+</body>
+</html>
